@@ -11,7 +11,7 @@ class Card extends Component {
 
   nextCard = (answer) => {
     const { deckTitle, cardNum, deckCards, score } = this.props.navigation.state.params
-    var newScore = score
+    let newScore = score
     if (answer === 'correct') {
       newScore = score + 1
     }

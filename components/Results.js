@@ -14,7 +14,7 @@ class Results extends Component {
 
     const numQuestions = deckCards['questions'].length
     const percentScore = 100 * score / numQuestions
-    var comment
+    let comment
 
     if ( percentScore === 100 ) {
       comment = 'Wow! You got this section perfect!'

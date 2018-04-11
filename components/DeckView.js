@@ -57,7 +57,7 @@ class DeckView extends Component {
     }
 
     const cardCount = deckCards['questions'].length
-    var cardCountStatement = ''
+    let cardCountStatement = ''
 
     if (cardCount === 1) {
       cardCountStatement = "There is " + cardCount.toString() + " card in this deck."
