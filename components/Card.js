@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import { connect } from 'react-redux'
 import FlipCard from 'react-native-flip-card'
-import { purple, white, gray } from '../utils/colors'
+import { purple, white, gray, black } from '../utils/colors'
 
 
 class Card extends Component {
@@ -52,7 +52,9 @@ class Card extends Component {
           <View
             style={styles.card}
           >
+            <Text style={styles.quizHeader}>Question { cardNum + 1 } of { deckCards['questions'].length }</Text>
             <Text style={styles.quizText}>{ deckCards['questions'][cardNum]['question'] }</Text>
+            <Text>Show Answer</Text>
           </View>
           {/* Back Side */}
           <View
@@ -81,6 +83,7 @@ class Card extends Component {
                 </Text>
               </TouchableOpacity>
             </View>
+            <Text>Show Question</Text>
           </View>
         </FlipCard>
         <TouchableOpacity
@@ -138,9 +141,15 @@ const styles = StyleSheet.create({
   },
   quizText: {
     alignSelf: 'center',
-    color: purple,
+    color: black,
     textAlign: 'center',
     fontSize: 24,
+  },
+  quizHeader: {
+    alignSelf: 'center',
+    color: purple,
+    textAlign: 'center',
+    fontSize: 20,
   },
 })
 

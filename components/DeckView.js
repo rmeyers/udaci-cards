@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { purple, white, black } from '../utils/colors'
-
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 class DeckView extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -14,6 +14,23 @@ class DeckView extends Component {
   }
 
   state = {
+  }
+
+  submit = () => {
+    const { decks } = this.props
+    const { deckTitle } = this.props.navigation.state.params
+
+    const deckCards = decks[deckTitle]
+
+    clearLocalNotification()
+      .then(setLocalNotification)
+      .then(this.props.navigation.navigate('Card', {
+              'deckTitle': deckTitle,
+              'cardNum': 0,
+              'score': 0,
+              'deckCards': deckCards
+            })
+      )
   }
 
   render() {
@@ -55,12 +72,7 @@ class DeckView extends Component {
         >{ cardCountStatement }</Text>
         <TouchableOpacity
           style={styles.item}
-          onPress={() => this.props.navigation.navigate('Card', {
-            'deckTitle': deckTitle,
-            'cardNum': 0,
-            'score': 0,
-            'deckCards': deckCards
-          })}
+          onPress={() => this.submit()}
           >
           <Text
             style={{color: white, textAlign: 'center', fontSize: 16}}

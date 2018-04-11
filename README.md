@@ -1,3 +1,25 @@
+# UdaciCards React Nanodegree Final Project
+
+This project was created as the final project for the Udacity React Nanodegree. It has been tested on an iOS simulator and has not been tested for Android.
+
+The UdaciCards app acts as a substitute to using regular index cards to test yourself on various topics. This app can be used to create new decks of 'cards', add cards to the deck, with each card including a question and answer, and quiz yourself on the topics.
+
+
+## Start Application
+
+To get started:
+
+* Download or clone this repository.
+* In terminal, navigate to the root directory of this project.
+* Run `yarn install`
+* Run `yarn start`
+* Run in the iOS simulator by typing `i`
+
+Author: Ryan Meyers, April 2018
+
+
+# Other React Native Documentation
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

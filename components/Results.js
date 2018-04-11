@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: purple,
+    color: black,
     margin: 20,
   },
   header: {
