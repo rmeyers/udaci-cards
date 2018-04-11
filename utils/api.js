@@ -6,11 +6,16 @@ export function getDecks () {
     .then(formatResults)
 }
 
-export function getDeck ( id ) {
+export function getDeck ( deck ) {
+  return getDecks()
 }
 
 export function saveDeckTitle ( title ) {
 }
 
 export function addCardToDeck ( title, card ) {
+}
+
+export function emptyStorage() {
+  AsyncStorage.setItem(DECKS_STORAGE_KEY, '')
 }

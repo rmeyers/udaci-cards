@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Platform, StatusBar } from 'react-native'
+import { View, Platform, StatusBar, Text } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { Constants } from 'expo'
-import { purple, white } from './utils/colors'
+import { purple, white, red } from './utils/colors'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import DeckList from './components/DeckList'
 import DeckView from './components/DeckView'
 import NewDeck from './components/NewDeck'
+import NewCard from './components/NewCard'
 import QuizView from './components/QuizView'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -67,6 +68,15 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple,
       }
     }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
   }
 })
 
@@ -76,19 +86,13 @@ export default class App extends React.Component {
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
           <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+          <View style={{backgroundColor: purple, height: 30}}>
+            <Text style={{flex: 1, color: white, textAlign: 'center', fontSize: 20}}>UdaciCards</Text>
+          </View>
           <MainNavigator />
         </View>
       </Provider>
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
