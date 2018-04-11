@@ -13,7 +13,13 @@ export function getDeck ( deck ) {
 export function saveDeckTitle ( title ) {
 }
 
-export function addCardToDeck ( title, card ) {
+export function addNewCard ( title, card ) {
+  getDecks().then((decks) => {
+    if (decks[title] && decks[title]['questions']) {
+      decks[title]['questions'].push(card)
+    }
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+  })
 }
 
 export function emptyStorage() {

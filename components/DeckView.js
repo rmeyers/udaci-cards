@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { getDeck } from '../utils/api'
-import { purple, white } from '../utils/colors'
+import { purple, white, black } from '../utils/colors'
 
 
 class DeckView extends Component {
@@ -23,7 +22,7 @@ class DeckView extends Component {
 
     const deckCards = decks[deckTitle]
 
-    if (deckCards['questions'] = []) {
+    if (deckCards['questions'] === []) {
       return (
         <View>
           <TouchableOpacity
@@ -41,8 +40,29 @@ class DeckView extends Component {
     }
 
     return (
-      <View>
-        <Text>{JSON.stringify(deckCards)}</Text>
+      <View style={styles.container}>
+        <Text
+          style={{color: black, textAlign: 'center', fontSize: 20, margin: 40}}
+        >There are {deckCards.questions.length} cards in this deck.</Text>
+        <TouchableOpacity
+          style={styles.item}
+          >
+          <Text
+            style={{color: white, textAlign: 'center', fontSize: 16}}
+          >
+            Start Quiz
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.item}
+          >
+          <Text
+            style={{color: white, textAlign: 'center', fontSize: 16}}
+            onPress={() => this.props.navigation.navigate('NewCard', {deckTitle: deckTitle})}
+          >
+            Add Another Question
+          </Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -52,15 +72,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    padding: 0
+    padding: 0,
+    alignItems: 'center'
   },
   item: {
-    backgroundColor: white,
-    padding: 20,
+    backgroundColor: purple,
+    color: white,
+    padding: 10,
+    width: 200,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: purple
+    borderBottomColor: white,
+    borderRadius: 10,
+    margin: 20
   }
 })
 

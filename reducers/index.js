@@ -13,10 +13,11 @@ function cards (state = {}, action) {
         ...action.deck
       }
     case ADD_CARD :
-      return {
-        ...state,
-        ...action.card
+      const newState = {
+        ...state
       }
+      newState[action.title].questions.push(action.card)
+      return newState
     default :
       return state
   }

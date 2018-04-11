@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { purple, white } from '../utils/colors'
+import { addNewCard } from '../utils/api'
+import { addCard } from '../actions'
 
 
 class NewCard extends Component {
@@ -13,11 +15,27 @@ class NewCard extends Component {
 
   state = {
     question: '',
-    answer: '',
+    answer: ''
   }
 
   submit = () => {
+    const { dispatch } = this.props
+    const { decks } = this.props
+    const { deckTitle } = this.props.navigation.state.params
+    const card = {
+      'question': this.state.question,
+      'answer': this.state.answer
+    }
 
+    addNewCard( deckTitle, card )
+    dispatch(addCard( deckTitle, card ))
+
+    this.setState({
+      question: '',
+      answer: ''
+    })
+
+    this.props.navigation.goBack()
   }
 
   render() {
@@ -34,7 +52,7 @@ class NewCard extends Component {
           onChangeText={(answer) => this.setState({answer})}
         />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={this.submit()}>
+          <Text style={styles.buttonText} onPress={() => this.submit()}>
             Add Question
           </Text>
         </TouchableOpacity>
@@ -71,11 +89,12 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (state) {
+function mapStateToProps (decks, { navigation }) {
+  const { deckTitle } = navigation.state.params
   return {
+    deckTitle,
+    decks
   }
 }
 
-export default connect(
-  mapStateToProps
-)(NewCard)
+export default connect(mapStateToProps)(NewCard)
