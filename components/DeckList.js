@@ -30,9 +30,13 @@ class DeckList extends Component {
       <View style={styles.container}>
         { this.keysFromDecks().map((deck) => (
           <TouchableOpacity
+            key={deck}
             style={styles.item}
             onPress={() => this.props.navigation.navigate('DeckView', {deckTitle: deck})}>
-            <Text style={{color: purple, textAlign: 'center', fontSize: 20}}>{ deck }</Text>
+            <Text
+              style={{color: purple, textAlign: 'center', fontSize: 20}}
+              key={deck}
+            >{ deck }</Text>
           </TouchableOpacity>
         ))}
       </View>

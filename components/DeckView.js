@@ -22,30 +22,45 @@ class DeckView extends Component {
 
     const deckCards = decks[deckTitle]
 
-    if (deckCards['questions'] === []) {
+    if (deckCards['questions'].length === 0) {
       return (
-        <View>
+        <View style={styles.container}>
           <TouchableOpacity
             style={styles.item}
             >
             <Text
-              style={{color: purple, textAlign: 'center', fontSize: 20}}
+              style={{color: white, textAlign: 'center', fontSize: 16}}
               onPress={() => this.props.navigation.navigate('NewCard', {deckTitle: deckTitle})}
             >
-              No Cards - Click to add a card
+              No Cards - Add a Question
             </Text>
           </TouchableOpacity>
         </View>
       )
     }
 
+    const cardCount = deckCards['questions'].length
+    var cardCountStatement = ''
+
+    if (cardCount === 1) {
+      cardCountStatement = "There is " + cardCount.toString() + " card in this deck."
+    } else {
+      cardCountStatement = "There are " + cardCount.toString() + " cards in this deck."
+    }
+
     return (
       <View style={styles.container}>
         <Text
           style={{color: black, textAlign: 'center', fontSize: 20, margin: 40}}
-        >There are {deckCards.questions.length} cards in this deck.</Text>
+        >{ cardCountStatement }</Text>
         <TouchableOpacity
           style={styles.item}
+          onPress={() => this.props.navigation.navigate('Card', {
+            'deckTitle': deckTitle,
+            'cardNum': 0,
+            'score': 0,
+            'deckCards': deckCards
+          })}
           >
           <Text
             style={{color: white, textAlign: 'center', fontSize: 16}}
@@ -77,7 +92,6 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: purple,
-    color: white,
     padding: 10,
     width: 200,
     justifyContent: 'center',

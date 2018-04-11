@@ -11,6 +11,12 @@ export function getDeck ( deck ) {
 }
 
 export function saveDeckTitle ( title ) {
+  getDecks().then((decks) => {
+    if (!decks[title]) {
+      decks[title] = {'title': title, 'questions': []}
+    }
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+  })
 }
 
 export function addNewCard ( title, card ) {

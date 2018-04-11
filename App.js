@@ -7,11 +7,15 @@ import { Constants } from 'expo'
 import { purple, white, red } from './utils/colors'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import Card from './components/Card'
+import Results from './components/Results'
 import DeckList from './components/DeckList'
 import DeckView from './components/DeckView'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import QuizView from './components/QuizView'
+
+console.disableYellowBox = true;
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -71,6 +75,24 @@ const MainNavigator = StackNavigator({
   },
   NewCard: {
     screen: NewCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  Card: {
+    screen: Card,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  Results: {
+    screen: Results,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

@@ -8,16 +8,17 @@ function cards (state = {}, action) {
         ...action.decks,
       }
     case ADD_DECK :
-      return {
-        ...state,
-        ...action.deck
-      }
-    case ADD_CARD :
       const newState = {
         ...state
       }
-      newState[action.title].questions.push(action.card)
+      newState[action.title] = {'title': action.title, 'questions': []}
       return newState
+    case ADD_CARD :
+      const newState2 = {
+        ...state
+      }
+      newState2[action.title].questions.push(action.card)
+      return newState2
     default :
       return state
   }
